@@ -38,6 +38,7 @@
 .evs-testosterone-calculator .evs-field-label{font-family:var(--evs-disp);font-weight:600;font-size:19px;text-transform:uppercase;letter-spacing:.03em}
 .evs-testosterone-calculator .evs-row{display:flex;gap:10px;flex-wrap:wrap}
 .evs-testosterone-calculator .evs-input-wrap{position:relative;flex:1 1 180px;min-width:0}
+.evs-testosterone-calculator .evs-field>.evs-input-wrap{flex:none;width:100%}
 .evs-testosterone-calculator .evs-input{width:100%;min-height:56px;background:var(--evs-field);border:1px solid var(--evs-line);border-radius:4px;color:var(--evs-text);font-family:var(--evs-mono);font-size:20px;padding:12px 76px 12px 16px;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
 .evs-testosterone-calculator .evs-input::placeholder{color:#6E6E7A}
 .evs-testosterone-calculator .evs-input:focus{border-color:var(--evs-red);box-shadow:0 0 0 3px rgba(255,59,67,.18)}
@@ -71,7 +72,10 @@
 .evs-testosterone-calculator .evs-value{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
 .evs-testosterone-calculator .evs-value b{font-family:var(--evs-disp);font-size:clamp(56px,16vw,84px);font-weight:700;line-height:.9;font-variant-numeric:tabular-nums}
 .evs-testosterone-calculator .evs-value span{font-family:var(--evs-mono);font-size:16px;color:var(--evs-text-2)}
-.evs-testosterone-calculator .evs-nmol{font-family:var(--evs-mono);font-size:14px;color:var(--evs-text-2);margin-top:-6px}
+.evs-testosterone-calculator .evs-cap{font-family:var(--evs-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--evs-text-2)}
+.evs-testosterone-calculator .evs-pct{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;border:1px solid var(--evs-line);border-left:3px solid var(--evs-red);border-radius:4px;background:var(--evs-field);padding:12px 14px}
+.evs-testosterone-calculator .evs-pct b{font-family:var(--evs-disp);font-size:clamp(32px,9vw,44px);font-weight:700;line-height:1;color:var(--evs-text);font-variant-numeric:tabular-nums}
+.evs-testosterone-calculator .evs-pct span{font-size:15px;color:var(--evs-text-2)}
 .evs-testosterone-calculator .evs-status{border:1px solid currentColor;border-left-width:4px;border-radius:4px;padding:14px 14px;display:flex;flex-direction:column;gap:8px}
 .evs-testosterone-calculator .evs-status-t{font-family:var(--evs-disp);font-weight:700;font-size:18px;letter-spacing:.03em;line-height:1.2;text-transform:uppercase}
 .evs-testosterone-calculator .evs-status-d{color:var(--evs-text);font-size:15px;line-height:1.5}
@@ -164,12 +168,9 @@
           <span class="evs-brand"><i aria-hidden="true"></i>EVS</span>
           <span class="evs-card-name">Калькулятор<br>свободного тестостерона</span>
         </div>
-        <div class="evs-value"><b id="evsPmol">0</b><span>пмоль/л</span></div>
-        <p class="evs-nmol"><span id="evsNmol">0.000</span> нмоль/л</p>
-        <div class="evs-status" id="evsStatus">
-          <p class="evs-status-t" id="evsStatusT"></p>
-          <p class="evs-status-d" id="evsStatusD"></p>
-        </div>
+        <p class="evs-cap">Свободный тестостерон, расчётный</p>
+        <div class="evs-value"><b id="evsNmol">0</b><span>нмоль/л</span></div>
+        <div class="evs-pct"><b id="evsPct">0%</b><span>от общего тестостерона</span></div>
         <dl class="evs-data">
           <div><dt>Общий Т</dt><dd id="evsDTotal"></dd></div>
           <div><dt>ГСПГ</dt><dd id="evsDShbg"></dd></div>
@@ -184,16 +185,11 @@
       <button class="evs-btn evs-btn--ghost" type="button" id="evsReset">Рассчитать заново</button>
 
       <div class="evs-support">
-        <p class="evs-label">Есть цифра. Нужна ясность</p>
-        <h2>А что с этим делать?</h2>
-        <p class="evs-lead">Сделай скриншот результата и отправь его в нашу службу поддержки. Поможем сориентироваться, на какие показатели обратить внимание и что стоит проверить дальше.</p>
-        <ol class="evs-steps">
-          <li>Сделай скрин результата.</li>
-          <li>Открой службу поддержки.</li>
-          <li>Прикрепи скрин и напиши, ты уже на ГЗТ или пока только принимаешь решение.</li>
-        </ol>
-        <a class="evs-btn" id="evsSupport" href="#" target="_blank" rel="noopener noreferrer">Отправить скрин в поддержку</a>
-        <p class="evs-small">Поддержка не ставит диагнозы и не назначает терапию в переписке. Мы поможем понять результат и определить, какие вопросы стоит обсудить дальше.</p>
+        <p class="evs-label">Что дальше</p>
+        <h2>Сделай скрин результата</h2>
+        <p class="evs-lead">Сохрани его. Что делать с этой цифрой, скажу позже.</p>
+        <p class="evs-lead">Если хочешь разобраться прямо сейчас, напиши мне в Telegram и прикрепи скрин.</p>
+        <a class="evs-btn" href="https://t.me/Evseev_kodtestesterona" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
       </div>
     </section>
   </div>
@@ -203,11 +199,8 @@
 (function () {
   "use strict";
 
-  var SUPPORT_TELEGRAM_URL = "https://t.me/Evseev_kodtestesterona";
   var NGDL_TO_NMOL = 0.0347;
   var DEFAULT_ALBUMIN = 43;
-  var LOW_FREE_PMOL = 220;
-  var LOW_TOTAL_NMOL = 12;
 
   function calculateFreeTestosterone(totalT, shbg, albumin) {
     if (albumin === undefined) albumin = DEFAULT_ALBUMIN;
@@ -226,26 +219,6 @@
   var inAlb = document.getElementById("evsAlb");
   var unitLabel = document.getElementById("evsTotalUnit");
   var result = document.getElementById("evsResult");
-  var support = document.getElementById("evsSupport");
-  support.href = SUPPORT_TELEGRAM_URL;
-
-  var STATUS = {
-    red: {
-      cls: "evs-status--red",
-      title: "Показатель ниже ориентировочного порога",
-      text: "Результат ниже ориентировочного порога 220 пмоль/л. Это не диагноз и не основание самостоятельно начинать или менять терапию. Важно учитывать симптомы, условия сдачи анализа и другие показатели."
-    },
-    yellow: {
-      cls: "evs-status--yellow",
-      title: "Результат требует уточнения",
-      text: "Общий тестостерон находится ниже ориентировочного уровня, но расчётный свободный тестостерон не снижен. Такое расхождение может быть связано с ГСПГ. Принимать решение только по общему тестостерону нельзя."
-    },
-    green: {
-      cls: "evs-status--green",
-      title: "Показатель не ниже ориентировочного порога",
-      text: "Явного снижения по расчёту не видно. Это не оценка верхней границы показателя и не подтверждение безопасности терапии. Если остаются усталость, плохой сон, снижение либидо или проблемы с восстановлением, у этих состояний могут быть другие причины."
-    }
-  };
 
   function currentUnit() {
     var r = form.querySelector('input[name="unit"]:checked');
@@ -253,9 +226,11 @@
   }
 
   function parseNumber(raw) {
-    var s = String(raw == null ? "" : raw).trim().replace(/\s+/g, "").replace(",", ".");
-    if (!/^\d+(\.\d+)?$|^\.\d+$/.test(s)) return NaN;
-    var n = parseFloat(s);
+    var s = String(raw == null ? "" : raw).replace(/\u00a0/g, " ").trim();
+    s = s.replace(/(\d)\s+(?=\d{3}\b)/g, "$1");
+    var m = s.match(/\d+(?:[.,]\d+)?|[.,]\d+/);
+    if (!m) return NaN;
+    var n = parseFloat(m[0].replace(",", "."));
     return isFinite(n) ? n : NaN;
   }
 
@@ -268,7 +243,7 @@
   function validate(input, name) {
     var raw = input.value.trim();
     if (raw === "") { setError(input, "Введи значение " + name + "."); return NaN; }
-    if (/^-/.test(raw)) { setError(input, "Значение должно быть больше нуля."); return NaN; }
+    if (/^\s*[-−–]\s*\d/.test(raw)) { setError(input, "Значение должно быть больше нуля."); return NaN; }
     var n = parseNumber(raw);
     if (isNaN(n)) { setError(input, "Нужно число, например 18 или 18,5."); return NaN; }
     if (n <= 0) { setError(input, "Значение должно быть больше нуля."); return NaN; }
@@ -303,6 +278,11 @@
     }
 
     var unit = currentUnit();
+    if (unit === "nmol" && total > 150) { setError(inTotal, "Слишком большое значение для нмоль/л. Если в бланке нг/дл, переключи единицу справа."); result.hidden = true; inTotal.focus(); return; }
+    if (unit === "ngdl" && total > 5000) { setError(inTotal, "Проверь значение: для нг/дл оно слишком большое."); result.hidden = true; inTotal.focus(); return; }
+    if (unit === "ngdl" && total < 20) { setError(inTotal, "Слишком маленькое значение для нг/дл. Если в бланке нмоль/л, переключи единицу."); result.hidden = true; inTotal.focus(); return; }
+    if (shbg > 300) { setError(inShbg, "Проверь значение ГСПГ: оно слишком большое для нмоль/л."); result.hidden = true; inShbg.focus(); return; }
+    if (alb < 20 || alb > 70) { setError(inAlb, "Альбумин указывают в г/л, обычно это 35–52. Если не сдавал, оставь 43."); result.hidden = true; inAlb.focus(); return; }
     var totalNmol = unit === "ngdl" ? total * NGDL_TO_NMOL : total;
     var freeNmol = calculateFreeTestosterone(totalNmol, shbg, alb);
 
@@ -312,16 +292,8 @@
       return;
     }
 
-    var freePmol = freeNmol * 1000;
-    var key = freePmol < LOW_FREE_PMOL ? "red" : (totalNmol < LOW_TOTAL_NMOL ? "yellow" : "green");
-    var st = STATUS[key];
-
-    document.getElementById("evsPmol").textContent = Math.round(freePmol).toLocaleString("ru-RU");
-    document.getElementById("evsNmol").textContent = fmt(freeNmol, 3);
-    var box = document.getElementById("evsStatus");
-    box.className = "evs-status " + st.cls;
-    document.getElementById("evsStatusT").textContent = st.title;
-    document.getElementById("evsStatusD").textContent = st.text;
+    document.getElementById("evsNmol").textContent = fmt(freeNmol, freeNmol < 1 ? 3 : 2);
+    document.getElementById("evsPct").textContent = fmt(freeNmol / totalNmol * 100, 1) + "%";
 
     function setData(id, num, unit, extra) {
       var el = document.getElementById(id);
